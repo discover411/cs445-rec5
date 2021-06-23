@@ -53,7 +53,7 @@ public class Recursion {
      * @param arr  The array, whose entries to be reversed.
      */
     public static <T> void reverse(T[] arr) {
-        reverse(arr, 0, arr.length);
+    	 reverse(arr, 0, arr.length);
     }
 
     /**
@@ -67,7 +67,14 @@ public class Recursion {
      */
     private static <T> void reverse(T[] arr, int start, int end) {
         // TODO: Complete this method using recursion.
+    	if(end >start) {
+    	swap(arr,start,end-1);
+    	reverse(arr, start+1, end-1);
+    	}
     }
+    	// end == start --> 1 element
+    	// end < start --> already reversed
+    
 
     /**
      * Determines the minimum and maximum element of an array of ints,
@@ -95,7 +102,16 @@ public class Recursion {
      */
     private static MinMax findMinMax(int[] nums, int start, int end){
         // TODO: Complete this method using recursion.
-        return null;
+    	if (start+1 ==end) {
+    		return new MinMax(nums[start], nums[start]);
+    		
+    	}else {
+    	
+    	MinMax curr = findMinMax(nums, start+1, end); //min max of remainder of array
+        return new MinMax(Math.min(nums[start], curr.min), Math.max(nums[start],  curr.max));
+    	
+    	}
+        
     }
 
 }
